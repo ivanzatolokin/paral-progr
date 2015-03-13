@@ -1,24 +1,82 @@
-#include <omp.h>
-#include <stdio.h>
-#include <stdlib.h>
-   
-int main (int argc, char *argv[])
-{
-	int th_id, nthreads;
-	
-	#pragma omp parallel private(th_id)
-	{
-		th_id = omp_get_thread_num();
-		printf("Hello World from thread %d\n", th_id);
-		
-		#pragma omp barrier
+// ConsoleApplication1.cpp: определяет точку входа для консольного приложения.
+//
 
-		if(th_id == 0){
-			nthreads = omp_get_num_threads();
-			printf("There are %d threads\n",nthreads);
+
+#include <omp.h>
+#include <stdlib.h>
+#include <iostream>
+using namespace std;
+
+const int size = 2000;
+int a[size][size];
+int b[size][size];
+int c[size][size];
+
+int main()
+{
+	setlocale(LC_ALL, "Russian");
+	int sum;
+
+	for (int i = 0; i < size; i++){
+		for (int j = 0; j < size; j++)
+			a[i][j] = rand() % 60 + 20;
+	}
+	for (int i = 0; i < size; i++){
+		for (int j = 0; j < size; j++)
+			b[i][j] = rand() % 60 + 20;
+	}
+
+	//cout << "Матрица А" << endl;
+	//for (int i = 0; i < size; i++) {
+	//	for (int j = 0; j < size; j++) {
+	//		cout << a[i][j] << " ";
+	//	}
+	//	cout << endl;
+	//}
+
+	//cout << "Матрица B" << endl;
+	//for (int i = 0; i < size; i++) {
+	//	for (int j = 0; j < size; j++) {
+	//		cout << b[i][j] << " ";
+	//	}
+	//	cout << endl;
+	//}
+
+	double begin = omp_get_wtime();
+
+#pragma omp parallel for private (sum)
+	for (int k = 0; k < size; k++) {
+		for (int i = 0; i < size; i++) {
+			sum = 0;
+			for (int j = 0; j < size; j++) {
+				sum += a[i][j] * b[j][k];
+			}
+			c[i][k] = sum;
 		}
 	}
-	return EXIT_SUCCESS;
+	cout << "Время работы параллельного выполнения - " << (omp_get_wtime() - begin) << endl;
+
+	begin = omp_get_wtime();
+
+	for (int k = 0; k < size; k++) {
+		for (int i = 0; i < size; i++) {
+			sum = 0;
+			for (int j = 0; j < size; j++) {
+				sum += a[i][j] * b[j][k];
+			}
+			c[i][k] = sum;
+		}
+	}
+	cout << "Время работы последовательного выполнения - " << (omp_get_wtime() - begin) << endl;
+
+	//cout << "Матрица C" << endl;
+	//for (int i = 0; i < size; i++) {
+	//	for (int j = 0; j < size; j++) {
+	//		cout << c[i][j] << " ";
+	//	}
+	//	cout << endl;
+	//}
+	//cin.ignore();
 }
 
 
