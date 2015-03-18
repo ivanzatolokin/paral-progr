@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
-#include <omp.h>
+//#include <omp.h>
 #include <iostream>
 using namespace std;
 
@@ -63,10 +63,10 @@ int main(void)
 
 	printf("Hello from POSIX threads app!\n");
 
-	double begin = omp_get_wtime();
+//	double begin = omp_get_wtime();
 
 	// create all threads one by one
-	for (i; i < NUM_THREADS; i++)
+	for (i=0; i < NUM_THREADS; i++)
 	{
 		thread_args[i] = i;
 		printf("In main: creating thread %d\n", i);
@@ -74,7 +74,7 @@ int main(void)
 		assert(0 == rc);
 	}
 
-	cout << "Vremya sozdaniya potokov - " << (omp_get_wtime() - begin) << endl;
+//	cout << "Vremya sozdaniya potokov - " << (omp_get_wtime() - begin) << endl;
 
 	char str[11];
 	sprintf(str, "%d", i);
@@ -87,7 +87,7 @@ int main(void)
 		assert(0 == rc);
 	}
 
-	cout << "Vremya rabotu parallel'nogo vupolneniya - " << (omp_get_wtime() - begin) << endl;
+//	cout << "Vremya rabotu parallel'nogo vupolneniya - " << (omp_get_wtime() - begin) << endl;
 
 	/*cout << "Матрица C" << endl;
 	for (int i = 0; i < size; i++) {
