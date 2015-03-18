@@ -75,10 +75,7 @@ int main(void)
 	}
 
 	cout << "Vremya sozdaniya potokov - " << (omp_get_wtime() - begin) << endl;
-
-	char str[11];
-	sprintf(str, "%d", i);
-	printf(str);
+   
 	// wait for each thread to complete
 	for (i = 0; i < NUM_THREADS; ++i) {
 		// block until thread i completes
@@ -89,7 +86,7 @@ int main(void)
 
 	cout << "Vremya rabotu parallel'nogo vupolneniya - " << (omp_get_wtime() - begin) << endl;
 
-	/*cout << "Ìàòðèöà C" << endl;
+	/*cout << "ÃŒÃ Ã²Ã°Ã¨Ã¶Ã  C" << endl;
 	for (int i = 0; i < size; i++) {
 		for (int j = 0; j < size; j++) {
 			cout << c[i][j] << " ";
