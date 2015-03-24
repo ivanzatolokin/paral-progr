@@ -15,8 +15,11 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\..\omp.cpp">
+    <ClCompile Include="..\..\sample.cpp">
       <Filter>Файлы исходного кода</Filter>
     </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Library Include="..\Misc\pthreadVCE2.lib" />
   </ItemGroup>
 </Project>
