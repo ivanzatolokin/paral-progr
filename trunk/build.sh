@@ -1,3 +1,3 @@
-g++ -lpthread -fopenmp -Wall -otarget/sample-`uname -m` sample.cpp -pthread
+g++ -fopenmp -Wall -otarget/omp-`uname -m` omp.cpp
 
 
