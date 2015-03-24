@@ -7,7 +7,7 @@
 using namespace std;
 
 #define NUM_THREADS     20
-const int size = 2000;
+const int size = 4000;
 int a[size][size];
 int b[size][size];
 int c[size][size];
