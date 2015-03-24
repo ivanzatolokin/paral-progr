@@ -7,7 +7,7 @@
 using namespace std;
 
 #define NUM_THREADS     20
-const int size = 1000;
+const int size = 500;
 int a[size][size];
 int b[size][size];
 int c[size][size];
@@ -75,7 +75,7 @@ int main(void)
 	}
 
 	cout << "Vremya sozdaniya potokov - " << (omp_get_wtime() - begin) << endl;
-
+	begin = omp_get_wtime();
 	// wait for each thread to complete
 	for (i = 0; i < NUM_THREADS; ++i) {
 		// block until thread i completes
