@@ -7,7 +7,7 @@
 #include <iostream>
 using namespace std;
 
-const int size = 100;
+const int size = 500;
 int a[size][size];
 int b[size][size];
 int c[size][size];
